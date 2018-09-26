@@ -4,12 +4,18 @@ CREATE TABLE IF NOT EXISTS syslog.rh_movimiento (
     clave_plaza VARCHAR(30) NOT NULL,
     id_plaza INTEGER UNSIGNED NOT NULL,
     id_ausencia INTEGER UNSIGNED,
+    id_mov_padre INTEGER UNSIGNED,
     fec_inicio DATE NOT NULL,
     fec_termino DATE NOT NULL,
     descr VARCHAR(200),
-    doc VARCHAR(100),
+    doc_num VARCHAR(20),
+    doc_form VARCHAR(20).
     ref_motivo VARCHAR(100),
     ref_origen VARCHAR(100),
+    term_ant TINY INT NOT NULL DEFAULT 0,
+    descr_term VARCHAR(255),
+    motivo_term ENUM('VENCIMIENTO', 'RENUNCIA', 'CANCELACION', 'JUBILACION', 'LEGAL', 'OTRO') DEFAULT 'VENCIMIENTO', 
+
     PRIMARY KEY(id),
     INDEX IDX_clave_trab(clave_trab ASC),
     CONSTRAINT FK_idplaza_mov FOREIGN KEY (id_plaza) REFERENCES syslog.rh_plaza(id)

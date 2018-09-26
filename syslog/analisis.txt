@@ -1,0 +1,133 @@
+COMISIONES
+
+trabajadores
+	ficha
+	categoria
+
+unidades
+	inmovilizado
+
+origen
+destino
+
+dias de comision
+
+motivo de la comision
+descripcion de la comision
+
+
+inserta un registro en la tabla de ausencias, para cada trabajador en la comisión, en la fecha indicada
+
+tabla Comisiones
+rh_act_foraneas  (actividaes foraneas
+
+inserta un registro en la tabla de actividades, en las fechas indicadas, los trabajadores y las unidades.
+
+-------------------------------------------------
+
+VACACIONES
+
+trabajador
+fecha de inicio
+fecha de termino
+fecha de reanudacion
+
+ciclo vacacional
+plaza en la que sale a vacaciones
+(checa la vigencia de la plaza, si es menor que el periodo vacacional partir el periodo vacacional, e insertar
+
+los registros que sean necesarios, la plaza que corresponda)
+---------------------------------------------------------------
+
+MOVIMIENTOS
+TRABAJADOR:
+¿Tiene una relación laboral vigente?
+NO: Proceder con el movimiento
+SI:
+	Es un movimiento definitivo?
+	SI:
+		Terminar con la relación laboral actual.
+		Proceder con el movimiento
+	NO:
+		¿La relación laboral actual vigente es un movimiento Definitivo?
+		SI:
+			Proceder con el movimiento
+		NO:
+			Terminar con la relacion laboral actual
+			Proceder con el movimiento
+
+PLAZA:
+El movimiento procede si en el periodo se encuentra la plaza en ausencia o si el trabajador que actualmente la ocupa se encuentra en otro movimiento.
+
+¿La plaza está ocupada actualmente?
+SI:
+	La plaza está en una ausencia?
+	SI:
+		Coinciden las fechas del movimiento en el periodo de la ausencia?
+		SI:
+			Proceder con el movimiento
+			padre <- null
+			ref origen <- descr ausencia
+		NO:
+			Alertar de este hecho
+			Ajusta la fecha de terminación del movimiento a la de terminación de la ausencia
+	NO:
+		El trabajador actual de la plaza se haya en otro movimiento?
+		SI:
+			Coinciden las fechas del movimiento 2 dentro del rango del movimiento 1?
+			SI:
+				Proceder con el movimiento
+				padre<-id movimiento 1
+				ref origen <- padre->ref origen
+			NO:
+				Alertar este hecho
+				Ajustar la fecha de terminación del movimiento 2 a la del movimiento 1
+		NO:
+			No se puede realizar el movimiento
+			Alertar este hecho
+NO:
+	seguramente por una renuncia - terminacion anticipada
+	Proceder con el movimiento
+	padre <- null
+	ref origen <- descr terminacion más reciente de la plaza
+
+
+
+ESTRUCTURA DE LA ENTIDAD rh_movimiento
+id 		id del registro
+clave_trab	ficha del trabajador que realiza el movimiento
+id_plaza	id de la plaza donde se realizará el movimiento
+clave_plaza	plaza del movimiento
+id_mov_padre	id del movimiento anterior en la corrida
+ref_origen	descripción del origen
+ref_motivo	descripción del movimiento padre
+fec_inicio	fecha de inicio del movimiento
+fec_termino	fecha de termino del movimiento
+doc_num		número del documento que avala el movimiento (número de nómina o contratación)
+doc_form	tipo del documento, número de forma (12-5, 12-8)
+descr		descripción del movimiento
+term_ant	bandera que indica si el movimiento tuvo una terminación anticipada (una renuncia)
+descr_term	descripción de la terminación del movimiento 
+motivo_term	por default es vencimiento, puede
+		ser renuncia, cancelacion, jubilacion, legal (plaza demandada)
+id_ausencia	id de la ausencia que genera la corrida
+
+
+---------------------------------------------------
+
+TERMINACIÓN DE MOVIMIENTOS
+RENUNCIAS
+
+Se debe señalar la finalización de un movimiento en determinadas circunstancias: por jubilación, por renuncia voluntaria, por cancelación de la plaza, por demanda a la plaza, o por vencimiento de la vigencia de la plaza, y Otros.
+
+Terminacion de la relación laboral
+Ficha:
+Plaza
+Fecha de terminación
+Descripción
+Motivo
+term_ant<-true}
+
+
+
+
