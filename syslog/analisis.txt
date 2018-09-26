@@ -99,13 +99,13 @@ clave_trab	ficha del trabajador que realiza el movimiento
 id_plaza	id de la plaza donde se realizará el movimiento
 clave_plaza	plaza del movimiento
 id_mov_padre	id del movimiento anterior en la corrida
-ref_origen	descripción del origen
-ref_motivo	descripción del movimiento padre
+ref_mov		Doc con fecha del origen del movimiento (12-59 num 18468 del 14.09.2018)
+ref_origen	descripción del origen (VACACIONES F-355556)
 fec_inicio	fecha de inicio del movimiento
 fec_termino	fecha de termino del movimiento
 doc_num		número del documento que avala el movimiento (número de nómina o contratación)
 doc_form	tipo del documento, número de forma (12-5, 12-8)
-descr		descripción del movimiento
+descr		motivo del movimiento
 term_ant	bandera que indica si el movimiento tuvo una terminación anticipada (una renuncia)
 descr_term	descripción de la terminación del movimiento 
 motivo_term	por default es vencimiento, puede
