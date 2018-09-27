@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/var/www/html/syslog'
+let g:netrw_dirhist_2='/var/www/html/syslog/modules/rh/views/rh-ausencia'
+let g:netrw_dirhist_3='/var/www/html/syslog/modules/rh/views'
+let g:netrw_dirhist_4='/var/www/html/syslog/modules/rh/views/default'
