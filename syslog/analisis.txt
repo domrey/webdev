@@ -40,6 +40,8 @@ los registros que sean necesarios, la plaza que corresponda)
 ---------------------------------------------------------------
 
 MOVIMIENTOS
+
+
 TRABAJADOR:
 ¿Tiene una relación laboral vigente?
 NO: Proceder con el movimiento

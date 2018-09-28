@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS syslog.rh_movimiento (
     id_plaza INTEGER UNSIGNED NOT NULL,
     id_ausencia INTEGER UNSIGNED DEFAULT NULL,
     id_mov_padre INTEGER UNSIGNED DEFAULT NULL,
+    id_mov_origen INTEGER UNSIGNED DEFAULT NULL,
     fec_inicio DATE NOT NULL,
     fec_termino DATE NOT NULL,
     descr VARCHAR(200) DEFAULT NULL,
