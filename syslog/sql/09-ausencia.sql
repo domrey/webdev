@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS syslog.rh_ausencia (
 	req_cobertura TINYINT(1) NOT NULL DEFAULT 0, 
 	doc VARCHAR(80) NULL, 
 	descr TEXT NULL, 
+	referencia VARCHAR(80) NULL,
 	PRIMARY KEY(id), 
 	INDEX IDX_ausencia(clave_trab, clave_plaza), 
 	INDEX IDX_clave_motivo(clave_motivo ASC),
