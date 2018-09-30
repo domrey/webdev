@@ -46,7 +46,7 @@ TRABAJADOR:
 ¿Tiene una relación laboral vigente?
 NO: Proceder con el movimiento
 SI:
-	Es un movimiento definitivo?
+	Es un movimiento que se va a registrar es definitivo?
 	SI:
 		Terminar con la relación laboral actual.
 		Proceder con el movimiento
