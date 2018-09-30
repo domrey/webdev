@@ -17,7 +17,7 @@ INSERT INTO syslog.rh_ausencia_tipo (clave, nombre, descr, clave_clase, orden) V
 INSERT INTO syslog.rh_ausencia_tipo (clave, nombre, descr, clave_clase, orden) VALUES ('VAE', 'VACACIONES EXTEMPORANEAS', 'VACACIONES EXTEMPORANEAS', 'VA', 12);
 INSERT INTO syslog.rh_ausencia_tipo (clave, nombre, descr, clave_clase, orden) VALUES ('150', 'PERMISO ECONOMICO', 'PERMISO ECONOMICO', 'PE', 1);
 INSERT INTO syslog.rh_ausencia_tipo (clave, nombre, descr, clave_clase, orden) VALUES ('151', 'PERMISO POR PATERNIDAD', 'CLAUSULA POR PATERNIDAD', 'PE', 13);
-INSERT INTO syslog.rh_ausencia_tipo (clave, nombre, descr, clave_clase, orden) VALUES ('147', 'PERMISO RENUNCIABLE', 'PEREMISO RENUNCIABLE', 'PE', 3);
+INSERT INTO syslog.rh_ausencia_tipo (clave, nombre, descr, clave_clase, orden) VALUES ('147', 'PERMISO RENUNCIABLE', 'PERMISO RENUNCIABLE', 'PE', 3);
 INSERT INTO syslog.rh_ausencia_tipo (clave, nombre, descr, clave_clase, orden) VALUES ('148', 'PERMISO 90 DIAS', 'PERMISO 90 DIAS', 'PE', 14);
 INSERT INTO syslog.rh_ausencia_tipo (clave, nombre, descr, clave_clase, orden) VALUES ('149', 'PERMISO  6 AÑOS', 'PERMISO  6 AÑOS', 'PE', 15);
 INSERT INTO syslog.rh_ausencia_tipo (clave, nombre, descr, clave_clase, orden) VALUES ('103', 'EXAMENES MEDICO', 'EXAMENES MEDICO', 'ME', 6);
