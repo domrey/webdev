@@ -1,0 +1,3 @@
+sudo apt-get install php-intl, php-mbstring, php-xml, php-mysql, php-imagick, php-memcache, php-memcached, php-gd
+
+sudo apt-get install php-bcmath, 
