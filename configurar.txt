@@ -63,6 +63,28 @@ Para trabajar con una aplicacion yii
     $ composer create-project --prefer-dist yiisoft/yii2-app-basic syslog
 
 * Preparar el entorno local de desarrollo
+
+Aqui se puede clonar el proyecto desde el repositorio GitHub si ya existe
+	$ git clone 
+
+y hacer un 
+	$ composer update
+
+puesto que muchos archivos del proyecto no son format parte del sistema de control de cambios, por eso se deben instalar una vez clonado el proyecto.
+
+y modificar los permisos para las carpetas runtime y web/assets
+
+	$ chmod -R 777 runtime
+	$ chmod -R 777 web/assets
+
+
+OJO 
+La carpeta assets puede que no se incluye como parte de la clonacion (dependiendo del contenido de .gitignore)
+
+
+*****
+
+
 Tener instalada un servidor web (apache), base de datos (mariadb) y el lenguaje
 PHP en el equipo de desarrollo. Dependiendo de la instalación establecida,
 tomar nota de el directorio raíz que alojará la aplicación nueva.
