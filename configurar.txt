@@ -1,0 +1,236 @@
+1. Verificar si hay llaves SSH ya creadas
+* open termina
+* escribir
+    $ ls -al ~/.ssh
+
+    esto lista los archivos en el directorio .ssh, si este existiera
+* si lista algún archivo es que si hay llaves ssh ya creadas
+* por default,los nombres de las llaves publicas son como los siguientes:
+    - id_dsa.pub
+    - id_ecdsa.pub
+    - id_ed25519.pub
+    - id_rsa.pub
+
+2. Generar una nueva llave ssh y añadirla al agente ssh
+* abrir la terminal
+* escribir los siguiente
+    $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
+    esto crea una nueva llave ssh, utilizando el correo proporcionado
+    como etiqueta
+* cuando se le pida que entroduzca un archivo en el cual guardar la llave, 
+presione Enter para aceptar la ubicación por default (/home/you/.ssh/id_rsa)
+* cuando se le pida una passphrase segura, introduzcala o Enter si no desea
+agregar una
+
+3 Añadiento la llave ssh al agente
+* iniciar el agente ssh en el background
+    $ eval "$(ss-agent -s)"
+
+    Agent pid 59566
+* añadir la llave ssh privada al agente-ssh (en lugar de id_rsa, si es que
+se utilizó un nombre distinto)
+    $ ssh-add ~/.ssh/id_rsa
+
+4 Añadir la llave ssh en la cuenta GitHub
+* Entrar a la cuenta GitHub
+* copiar el contenido de la llave ssh al portapapeles
+    $ xclip -sel clip < ~/.ssh/id_rsa.pub
+* Click en la parte superiro derecha de cualquier página en GitHub o click en
+  la foto de perfil, y luego Settings
+* Click en SSH and GPG Keys
+* Click en New SSH key o Add SSH key
+* En el campo "Title" añadir una etiqueta descriptiva para la llave nueva
+  (ejemplo: Personal Macbook Air)
+* Pegar del portapapeles en el campo "Key"
+
+* Click en Add SSH key
+* Si se le pide, confirmar la contraseña de la cuenta GitHub
+
+=================================================
+
+Para trabajar con una aplicacion yii
+
+1. INSTALAR YII 2.0
+* Instalar Composer
+    $ url -s http://getcomposer.org/installer | php
+    $ mv composer.phar /usr/local/bin/composer
+
+* Crear una carpeta local (en la cuenta personal), Sites, por ejemplo, para
+  alojar ahí el nuevo proyecto yii
+    $ cd ~/Sites
+    $ composer global require "fxp/composer-asset-plugin:1.4.0"
+    $ composer create-project --prefer-dist yiisoft/yii2-app-basic syslog
+
+* Preparar el entorno local de desarrollo
+Tener instalada un servidor web (apache), base de datos (mariadb) y el lenguaje
+PHP en el equipo de desarrollo. Dependiendo de la instalación establecida,
+tomar nota de el directorio raíz que alojará la aplicación nueva.
+Cambiar el directorio raíz del servidor Web
+y crear un enlace hacia la carpeta local del proyecto
+
+    $ cd /var/www/html    (o /Applications/MAMP/htdocs, d:/Xampp/htdocs)
+    $ ln -s ~/Sites/syslog /var/www/html/syslog
+
+Para comprobar que funciona, visitar el sitio http://localhost:8888/syslog/web
+Debería mostrar la página de inicio del nuevo proyecto
+
+* Cambiar el formato de las URL
+Activar el módulo mod_rewrite en el servidor web.
+Modificar web.php en la carpeta config del proyecto, la líneas:
+
+'components' => [
+//...
+  'urlManager' => [
+          'showScriptName' => false,
+          'enablePrettyUrl' => true
+                  ],    
+//...
+
+Luego crear un archivo .htaccess en la carpeta /web, donde se haya el index.php
+principal (el directorio de entrada a la aplicación), con el siguiente
+contenido:
+
+RewriteEngine on
+ 
+# If a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# Otherwise forward it to index.php
+RewriteRule . index.php
+
+
+CONFIGURANDO EL ENTORNO DE HOSPEDAJE ROMOTO
+*Crear un repositorio en GitHub. Para evitar errores, no inicializar el nuevo
+repositorio con un README, license or gitignore. Más adelante se agregarán al
+subirel proyecto.
+
+a continuación se muestra a manera de guía lo que muestra GitHub una vez creado
+el nuevo repositorio:
+------------------------------
+…or create a new repository on the command line
+
+echo "# logistica" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:domrey/logistica.git
+git push -u origin master
+
+…or push an existing repository from the command line
+
+git remote add origin git@github.com:domrey/logistica.git
+git push -u origin master
+
+---------------------------------------
+
+
+*NOTA. copiar el .gitignore original de Yii2 en la carpeta del proyecto nuevo. 
+
+
+Añadir el proyecto recién creado a GitHub como un repositorio:
+
+*   $ cd ~/Sites/syslog
+    $ git init
+    $ git commit -m "First commit of syslog world for yii2"
+    $ git remote add origin git@github.com:domrey/syslog.git
+    $ git push -u origin master
+
+a continuación se muestran a manera de guía estas mismas indicaciones como
+se muestra en GitHub:
+-----------------------------
+1.
+Create a new repository on GitHub. To avoid errors, do not initialize the new repository with README, license, or gitignore files. You can add these files after your project has been pushed to GitHub.
+
+2.
+Open Terminal.
+
+3.
+Change the current working directory to your local project.
+
+4.
+Initialize the local directory as a Git repository.
+
+git init
+
+5.
+Add the files in your new local repository. This stages them for the first commit.
+
+git add .
+# Adds the files in the local repository and stages them for commit. To unstage a file, use 'git reset HEAD YOUR-FILE'.
+
+6.
+Commit the files that you've staged in your local repository.
+
+git commit -m "First commit"
+# Commits the tracked changes and prepares them to be pushed to a remote repository. To remove this commit and modify the file, use 'git reset --soft HEAD~1' and commit and add the file again.
+
+7.
+At the top of your GitHub repository's Quick Setup page, click to copy the remote repository URL.
+
+8.
+In Terminal, add the URL for the remote repository where your local repository will be pushed.
+
+git remote add origin remote repository URL
+# Sets the new remote
+git remote -v
+# Verifies the new remote URL
+
+9.
+Push the changes in your local repository to GitHub.
+
+git push origin master
+# Pushes the changes in your local repository up to the remote repository you specified as the origin
+
+
+----------------------------------------------------------
+
+CONFIGURAR APACHE SERVER
+* Modificar /etc/hosts
+    $ vim /etc/hosts
+
+    127.0.0.1   syslog
+
+* Habilitar el modulo rewrite en apache
+    $ a2enmod rewrite
+    $ php5enmod mcrypt
+
+* Crear un grupo para otorgar dueño de los directorios
+    $ addgroup www
+    $ adduser www-data www
+    $ adduser george www
+    $ chown -R :www /var/www/html
+    $ chmod +s -R /var/www/html
+    $ chmod -vR g+w /var/www/html/
+
+
+* crear la llave ssh para utilizar git
+* clonar el proyecto en el servidor de produccion
+    $ git clone git@github.com:domrey/logistica.git /var/www/html
+
+* Crear el archivo de configuración para el directorio virtual del poryecto
+
+    $ sudo vim /etc/apache2/sites-available/002-syslog.conf
+
+<VirtualHost *:80>
+ ServerName syslog
+# Set document root to be "syslog/web"
+DocumentRoot "/var/www/html/syslog/web"
+<Directory "/var/www/html/syslog/web">
+    # use mod_rewrite for pretty URL support
+    RewriteEngine on
+    # If a directory or a file exists, use the request directly
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    # Otherwise forward the request to index.php
+    RewriteRule . index.php
+</Directory>
+</VirtualHost>
+
+
+* Habilitar el virtual site
+    $ sudo a2ensite 002-syslog.conf
+    $ sudo a2dissite 000-default.conf
+    $ sudo systemctl reload apache2
+
+
